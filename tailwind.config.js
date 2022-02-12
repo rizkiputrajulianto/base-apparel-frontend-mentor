@@ -9,6 +9,7 @@ module.exports = {
       'arrow-error': "url('./src/images/icon-error.svg')",
       'logo': "url('./src/images/logo.svg')",
       'avatar-mobile': "url('./src/images/avatar-mobile.svg')",
+      'md': '375px',
     },
   },
   plugins: [],

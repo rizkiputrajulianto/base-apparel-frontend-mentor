@@ -4,7 +4,7 @@ import Main from './component/Main';
 
 function App() {
   return (
-    <div className="App bg-pattern">
+    <div className="App drop-shadow-xl">
       <Main />
       <Footer />
     </div>
