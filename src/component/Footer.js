@@ -3,7 +3,7 @@ const Footer = () => {
     <footer>
       <p class="attribution">
         Challenge by
-        <a className="text-rose-700" href="https://www.frontendmentor.io?ref=challenge" target="_blank">
+        <a className="text-rose-700" href="https://www.frontendmentor.io?ref=challenge" target="_blank" rel="noopener">
           Frontend Mentor
         </a>
         . Coded by <a className="text-rose-700" href="#">Rizki Putra Julianto</a>.
