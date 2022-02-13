@@ -8,14 +8,19 @@ import "../App.css";
 const Main = () => {
   const size = useWindowSize();
   const [error, setError] = useState(false);
-  const [values, setValue] = useState("sss");
+  const [values, setValue] = useState("");
   function handleChange(event) {
-    console.log(event)
-    setValue(event.target.value);
-  };
+    setValue(event);
+  }
 
   function submit() {
-    console.log(values);
+    if (values === "") {
+      setError(true);
+    } else if (values.indexOf("@") === -1) {
+      setError(true);
+    } else {
+      setError(false);
+    }
   }
   return (
     <div className="bg-cover bg-pattern border lg:w-auto">
@@ -23,14 +28,20 @@ const Main = () => {
         <div id="Logo" className="md:py-4">
           <img src={logo} alt="logo" />
         </div>
-        <div id="avatar" className="md:col-start-2 md:row-span-4 w-full md:gap-0 bg-local">
+        <div
+          id="avatar"
+          className="md:col-start-2 md:row-span-4 w-full md:gap-0 bg-local"
+        >
           {size.width > 375 ? (
             <img className="bg-cover" src={avatar} alt="avatar" />
           ) : (
             <img className="bg-cover" src={avatars} alt="avatar" />
           )}
         </div>
-        <div id="Coming" className="text-6xl md:row-start-2 lg:text-9xl lg:text-left">
+        <div
+          id="Coming"
+          className="text-6xl md:row-start-2 lg:text-9xl lg:text-left"
+        >
           <span className="we">We're</span> coming soon
         </div>
         <div id="desc" className="text-center md:text-left md:text-xl">
@@ -38,13 +49,35 @@ const Main = () => {
           Add your email below to stay up-to-date with announcements and our
           launch deals.
         </div>
-        <div id="email" className="items-center">
-            <input id="email" onChange={() => handleChange()} className="px-4 py-3 md:py-6 md:px-3 md:text-2xl w-full text-gray-800 rounded-full outline outline-1" type="text" placeholder="Email Address" />
-            <button type="button" onClick={() => submit()} className="arrow px-6 py-3 md:py-8 md:px-12 rounded-full md:-ml-28 bg-rose-700 -ml-16">{error ? (<img src={warning} alt="error" />) : (<span></span>)}<img src={arrow} alt="arrow" /></button>
+        <div id="email" className="relative items-center">
+          {error ? (
+            <img
+              className="absolute bottom-16 right-40"
+              src={warning}
+              alt="error"
+            />
+          ) : (
+            <span></span>
+          )}
+          <input
+            id="email"
+            onChange={(e) => handleChange(e.target.value)}
+            className={`px-4 py-3 md:py-6 md:px-3 md:text-2xl w-full text-gray-800 rounded-full outline outline-1 ${
+              error ? "outline-rose-700 text-rose-700" : ""
+            }`}
+            type="text"
+            placeholder="Email Address"
+          />
+          <button
+            type="button"
+            onClick={() => submit()}
+            className="arrow px-6 py-3 md:py-8 md:px-12 rounded-full md:-ml-28 bg-rose-700 -ml-16"
+          >
+            <img src={arrow} alt="arrow" />
+          </button>
         </div>
-        {error ? (<div>Please provide valid email</div>) : (<span></span>)}
+        {error ? <div>Please provide valid email</div> : <span></span>}
       </div>
-      {values}
     </div>
   );
 };
